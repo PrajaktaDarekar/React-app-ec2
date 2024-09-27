@@ -10,23 +10,24 @@ phases:
   pre_build:
     commands:
       - echo "Running tests"
-      - npm run test # Optional, remove if you don't have tests
+      - npm run test 
   build:
     commands:
       - echo "Building the React application"
       - npm run build
   post_build:
-    commands:
-      - echo "Starting Post-Build Phase"
-      - echo "Zipping the built files"
-      - zip -r build.zip build/
-      - echo "Uploading artifact to S3"
-      - aws s3 cp build.zip s3://buisness-optima-codebuild-artifact-storage/build.zip
-      - echo "Notifying AWS CodeDeploy"
-      - aws deploy create-deployment \
-          --application-name MyReactApp \
-          --deployment-group-name MyDeploymentGroup \ # Replace with actual CodeDeploy Deployment Group name
-          --s3-location bucket=buisness-optima-codebuild-artifact-storage,bundleType=zip,key=build.zip
+  commands:
+    - echo "Starting Post-Build Phase"
+    - echo "Zipping the built files"
+    - zip -r build.zip build/
+    - echo "Uploading artifact to S3"
+    - aws s3 cp build.zip s3://buisness-optima-codebuild-artifact-storage/build.zip
+    - echo "Notifying AWS CodeDeploy"
+    - aws deploy create-deployment \
+        --application-name MyReactApp \
+        --deployment-group-name MyDeploymentGroup \
+        --s3-location bucket=buisness-optima-codebuild-artifact-storage,bundleType=zip,key=build.zip
+
 artifacts:
   files:
     - build/**/*
