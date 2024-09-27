@@ -6,7 +6,9 @@ phases:
       - echo "Installing dependencies"
       - curl -sL https://rpm.nodesource.com/setup_16.x | bash -
       - yum install -y nodejs
-      - npm install
+      - npm install -g npm@latest # Optional: Upgrade npm to the latest version
+      - npm ci # Faster install using package-lock.json
+
   pre_build:
     commands:
       - echo "Running tests"
