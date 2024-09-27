@@ -16,17 +16,17 @@ phases:
       - echo "Building the React application"
       - npm run build
   post_build:
-  commands:
-    - echo "Starting Post-Build Phase"
-    - echo "Zipping the built files"
-    - zip -r build.zip build/
-    - echo "Uploading artifact to S3"
-    - aws s3 cp build.zip s3://buisness-optima-codebuild-artifact-storage/build.zip
-    - echo "Notifying AWS CodeDeploy"
-    - aws deploy create-deployment \
-        --application-name MyReactApp \
-        --deployment-group-name MyDeploymentGroup \
-        --s3-location bucket=buisness-optima-codebuild-artifact-storage,bundleType=zip,key=build.zip
+    commands:  # Correct indentation here
+      - echo "Starting Post-Build Phase"
+      - echo "Zipping the built files"
+      - zip -r build.zip build/
+      - echo "Uploading artifact to S3"
+      - aws s3 cp build.zip s3://buisness-optima-codebuild-artifact-storage/build.zip
+      - echo "Notifying AWS CodeDeploy"
+      - aws deploy create-deployment \
+          --application-name MyReactApp \
+          --deployment-group-name MyDeploymentGroup \
+          --s3-location bucket=buisness-optima-codebuild-artifact-storage,bundleType=zip,key=build.zip
 
 artifacts:
   files:
