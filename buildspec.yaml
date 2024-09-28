@@ -10,9 +10,10 @@ phases:
       - npm ci # Faster install using package-lock.json
 
   pre_build:
-    commands:
-      - echo "Running tests"
-      - npm run test 
+  commands:
+    - echo "Running all tests"
+    - npm run test -- --all
+ 
   build:
     commands:
       - echo "Building the React application"
