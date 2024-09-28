@@ -3,9 +3,14 @@ os: linux
 files:
   - source: /scripts
     destination: /var/www/react-app/scripts
+permissions:
+  - object: /
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
 
 hooks:
   AfterInstall:
     - location: /var/www/react-app/scripts/install_dependencies.sh
       timeout: 300
-      runas: root
+      runas: ubuntu
