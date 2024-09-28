@@ -10,16 +10,17 @@ phases:
       - npm ci # Faster install using package-lock.json
 
   pre_build:
-  commands:
-    - echo "Running all tests"
-    - npm run test -- --all
- 
+    commands:  # Ensure this line is indented correctly
+      - echo "Running all tests"
+      - npm run test -- --all
+
   build:
     commands:
       - echo "Building the React application"
       - npm run build
+
   post_build:
-    commands:  # Correct indentation here
+    commands:
       - echo "Starting Post-Build Phase"
       - echo "Zipping the built files"
       - zip -r build.zip build/
