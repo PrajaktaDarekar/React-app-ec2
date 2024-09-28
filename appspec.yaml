@@ -1,8 +1,15 @@
 version: 0.0
 os: linux
+
 files:
-  - source: /scripts
+  - source: /
+    destination: /var/www/react-app
+    overwrite: true
+
+  - source: scripts/
     destination: /var/www/react-app/scripts
+    overwrite: true
+
 permissions:
   - object: /
     pattern: "**"
@@ -14,3 +21,4 @@ hooks:
     - location: /var/www/react-app/scripts/install_dependencies.sh
       timeout: 300
       runas: ubuntu
+
