@@ -1,17 +1,10 @@
 version: 0.0
 os: linux
-
 files:
-  - source: /
-    destination: /var/www/react-app
-    overwrite: true
-
-  - source: scripts/
+  - source: /scripts
     destination: /var/www/react-app/scripts
-    overwrite: true
-
 permissions:
-  - object: /
+  - object: /var/www/react-app
     pattern: "**"
     owner: ubuntu
     group: ubuntu
@@ -19,6 +12,11 @@ permissions:
 hooks:
   AfterInstall:
     - location: /var/www/react-app/scripts/install_dependencies.sh
+      timeout: 300
+      runas: ubuntu
+
+  ApplicationStart:
+    - location: /var/www/react-app/scripts/start_server.sh
       timeout: 300
       runas: ubuntu
 
