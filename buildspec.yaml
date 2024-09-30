@@ -19,5 +19,5 @@ post_build:
 
 artifacts:
   files:
-    - '**/*'  # Match all files recursively, ignoring folder structure
-  discard-paths: yes  # This will discard the folder structure and store all files at the root
+    - '**/*'  # This will capture all files in the base-directory
+  base-directory: 'react-app/build'
