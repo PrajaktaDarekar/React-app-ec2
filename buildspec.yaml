@@ -20,4 +20,4 @@ post_build:
 artifacts:
   files:
     - '**/*'  # This will capture all files in the base-directory
-  base-directory: 'react-app/build'
+  base-directory: 'build'
