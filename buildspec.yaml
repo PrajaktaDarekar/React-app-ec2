@@ -19,4 +19,5 @@ post_build:
 
 artifacts:
   files:
-    - build/**/*  # Include only the compiled output
+    - '**/*'  # Match all files recursively, ignoring folder structure
+  discard-paths: yes  # This will discard the folder structure and store all files at the root
