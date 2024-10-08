@@ -64,11 +64,11 @@ phases:
         docker rmi 339712736872.dkr.ecr.us-east-1.amazonaws.com/$IMAGE_REPO_NAME:$PREVIOUS_BUILD_NUMBER || true
 
         # Pull the latest Docker image
-        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 549671631236.dkr.ecr.us-east-1.amazonaws.com
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 339712736872.dkr.ecr.us-east-1.amazonaws.com
         docker pull 339712736872.dkr.ecr.us-east-1.amazonaws.com/$IMAGE_REPO_NAME:$UPDATED_BUILD_NUMBER
         
         # Run the new container
-        docker run -itd --name \$CONTAINER_NAME -p 82:80 549671631236.dkr.ecr.us-east-1.amazonaws.com/$IMAGE_REPO_NAME:$UPDATED_BUILD_NUMBER
+        docker run -itd --name \$CONTAINER_NAME -p 82:80 339712736872.dkr.ecr.us-east-1.amazonaws.com/$IMAGE_REPO_NAME:$UPDATED_BUILD_NUMBER
         EOT
       - |
         # Write appspec.yml for CodeDeploy
