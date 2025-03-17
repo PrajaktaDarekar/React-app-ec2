@@ -26,12 +26,16 @@ version: 0.2
 env:
   variables:
     IMAGE_REPO_NAME: "react_application_repository"
+    DOCKER_HUB_USERNAME: "businessoptimaofficial@gmail.com"
+    DOCKER_HUB_PASSWORD: "TecDemy2025!@#"
 
 phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 677276085827.dkr.ecr.us-east-1.amazonaws.com
+      - echo Logging in to Docker Hub to avoid rate limits...
+      - echo "$DOCKER_HUB_PASSWORD" | docker login --username "$DOCKER_HUB_USERNAME" --password-stdin
       - export BUILD_NUMBER=$CODEBUILD_BUILD_NUMBER
       - echo $BUILD_NUMBER      
       - export UPDATED_BUILD_NUMBER=$((BUILD_NUMBER + 0))
